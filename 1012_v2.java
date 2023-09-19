@@ -1,10 +1,23 @@
 import java.io.*;
 import java.util.*;
 public class Main {
+    final static int MAX=50+10;
     static int m,n,k,answer;
     static boolean[][] map;
-    static boolean[][] visited;
+    static int[] c1={-1,0,1,0};
+    static int[] c2={0,1,0,-1};
 
+
+    public static void dfs(int i, int j) {
+        map[i][j] = false;
+        for(int n=0; n<4; n++){
+            int new_i=i+c1[n];
+            int new_j=j+c2[n];
+
+            if(map[new_i][new_j]) dfs(new_i, new_j);
+        }
+
+    }
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -15,8 +28,7 @@ public class Main {
             m = Integer.parseInt(st.nextToken());
             n = Integer.parseInt(st.nextToken());
             k = Integer.parseInt(st.nextToken());
-            map=new boolean[n+1][m+1];
-            visited=new boolean[n+1][m+1];
+            map=new boolean[MAX][MAX];
 
             for(int j=0; j<k; j++){
                 st = new StringTokenizer(br.readLine());
@@ -28,7 +40,7 @@ public class Main {
             int answer=0;
             for(int i=1; i<=n; i++){
                 for(int j=1; j<=m; j++){
-                    if(map[i][j] && visited[i][j]==false){
+                    if(map[i][j]){
                         answer++;
                         dfs(i, j);
                     }
