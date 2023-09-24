@@ -63,16 +63,6 @@ public class Main {
                 }
             }
 
-            for(int i=1; i<=n; i++){
-                for(int j=1; j<=n; j++){
-                    System.out.print(map[i][j]);
-                }
-                System.out.println();
-            }
-            System.out.println("t"+ total + "y"+year);
-            System.out.println();
-
-
             if(total>=2) break;
             total=0;
 
