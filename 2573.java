@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 public class Main {
     static final int MAX=300+10;
-    static int n,m,total,year;
+    static int n,m,total,year,a;
     static int[][] map;
     static boolean[][] visited;
     static int[][] arr;
@@ -24,7 +24,7 @@ public class Main {
 
             }
         }
-        
+        arr[x][y]=count;
 
     }
 
@@ -54,23 +54,45 @@ public class Main {
                     }
                 }
             }
+            year++;
 
             for(int i=1; i<=n; i++){
                 for(int j=1; j<=m; j++){
+                    if(map[i][j]<arr[i][j]) map[i][j]=0;
+                    else map[i][j]-=arr[i][j];
+                }
+            }
+
+            for(int i=1; i<=n; i++){
+                for(int j=1; j<=n; j++){
                     System.out.print(map[i][j]);
                 }
                 System.out.println();
             }
+            System.out.println("t"+ total + "y"+year);
             System.out.println();
 
-            year++;
+
             if(total>=2) break;
             total=0;
+
+            a=0;
+            for(int i=1; i<=n; i++){
+                for(int j=1; j<=m; j++){
+                    if(map[i][j]!=0){
+                        a=1;
+                        break;
+                    }
+                }
+            }
+
+            if(a==0) break;
             visited=new boolean[MAX][MAX];
 
         }
 
-        bw.write(String.valueOf(year));
+        if(a==0) bw.write("0");
+        else bw.write(String.valueOf(year-1));
 
         br.close();
         bw.close();
