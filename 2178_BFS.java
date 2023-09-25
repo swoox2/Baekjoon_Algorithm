@@ -24,6 +24,7 @@ public class Main {
             Node current = q.poll();
             int x = current.x;
             int y = current.y;
+            visited[x][y]=true;
 
             for (int i = 0; i < 4; i++) {
                 int nx = x + c1[i];
@@ -31,7 +32,6 @@ public class Main {
 
                     if (map[nx][ny] == 1 && !visited[nx][ny]) {
                         q.offer(new Node(nx, ny));
-                        visited[nx][ny] = true;
                         map[nx][ny] = map[x][y] + 1;
                     }
 
@@ -59,7 +59,6 @@ public class Main {
         }
 
         q.offer(new Node(1, 1));
-        visited[1][1] = true;
 
         bfs();
 
