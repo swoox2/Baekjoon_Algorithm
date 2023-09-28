@@ -34,7 +34,7 @@ public class Main {
                 for(int j=0; j<val; j++){
                     int nx=val-j;
 
-                    if(1<=nx+idx && nx+idx<=1000 && visited[nx+idx]==false){
+                    if(nx+idx<=1000 && visited[nx+idx]==false){
                         visited[nx+idx]=true;
                         q.offer(new Node(arr[nx+idx],nx+idx));
                     }
